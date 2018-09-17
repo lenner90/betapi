@@ -7,16 +7,46 @@ using System.Web.Http;
 
 namespace betapi.Controllers
 {
+    [RoutePrefix("Bet")]
     public class ValuesController : ApiController
     {
-        // GET api/values
-        public IEnumerable<string> Get()
+
+        [HttpGet]
+        [Route("GetUid")]
+        public string GetUid()
         {
-            return new string[] { "value1", "value2" };
+            clsBet betDAC = new clsBet();
+            return betDAC.getUid();
+        }
+
+        // GET api/values
+        [HttpGet]
+        [Route("GetBetList")]
+        public List<betObject> GetBetList(string type, int id)
+        {
+            clsBet betDAC = new clsBet();
+            return betDAC.getBetList(type,id);
+        }
+
+        [HttpGet]
+        [Route("GetBetListByBatch")]
+        public List<betObject> GetBetListByBatch(string batchId)
+        {
+            clsBet betDAC = new clsBet();
+            return betDAC.GetBetListByBatch(batchId);
+        }
+
+        [HttpGet]
+        [Route("GetBetListById")]
+        public betObject GetBetListById([FromUri] int id)
+        {
+            clsBet betDAC = new clsBet();
+            return betDAC.getBetListById(id);
         }
 
         [HttpPost]
-        public int LoginUser(string userName, string pass)
+        [Route("LoginUser")]
+        public int LoginUser([FromUri]  string userName, string pass)
         {
             int userId = 0;
             Login ac = new Login();
@@ -24,25 +54,40 @@ namespace betapi.Controllers
             return userId;
         }
 
-        // GET api/values/5
-        public string Get(int id)
+        [HttpPost]
+        [Route("UpdateBet")]
+        public string UpdateBet([FromUri] int id,int num, int up,int down)
         {
-            return "value";
+            clsBet betDAC = new clsBet();
+             betDAC.update(id,num,up,down);        
+            return "test post post";
         }
 
-        // POST api/values
-        public void Post([FromBody]string value)
+        [HttpPost]
+        [Route("InsertBet")]
+        public string InsertBet([FromBody] List<betObject> betitem)
         {
+            clsBet betDAC = new clsBet();
+            foreach (var itm in betitem)
+            {
+                betDAC.insert(itm);
+            }
+
+            return "test post post";
         }
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        [HttpDelete]
+        [Route("Delete")]
+        public string Delete([FromUri] int id)
         {
+            clsBet betDAC = new clsBet();
+                betDAC.delete(id);
+
+
+            return "test post post";
         }
 
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
-        }
+
+
     }
 }

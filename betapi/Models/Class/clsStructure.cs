@@ -18,26 +18,21 @@ public struct usersObject
     public int updated_by;
 }
 
-public struct categoryObject
+public struct betObject
 {
     public int id;
-    public string name;
-    public string description;
-    public int status;
-    public byte[] image;
+    public string batch_id;
+    public int agent_id;
+    public string bet_type;
+    public int bet_number;
+    public int up;
+    public int down;
+    public DateTime created_date;
+    public int created_by;
+    public DateTime updated_date;
+    public int updated_by;
 }
 
-public struct productObject
-{
-    public int id;
-    public int parentId;
-    public string name;
-    public string description;
-    public int status;
-    public byte[] image;
-    public Image image2;
-    public double price;
-}
 
 [Serializable]
 public struct cartObject

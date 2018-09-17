@@ -190,6 +190,7 @@
     </Compile>
     <Compile Include="Models\Class\clsConnection.cs" />
     <Compile Include="Models\Class\clsStructure.cs" />
+    <Compile Include="Models\DAC\clsBet.cs" />
     <Compile Include="Models\DAC\clsUsers.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
